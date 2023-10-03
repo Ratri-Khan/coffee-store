@@ -5,7 +5,6 @@ const AddCoffee = () => {
         event.preventDefault();
 
         const form = event.target;
-
         const name = form.name.value;
         const quantity = form.quantity.value;
         const supplier = form.supplier.value;
@@ -14,7 +13,6 @@ const AddCoffee = () => {
         const details = form.details.value;
         const photo = form.photo.value;
         const newCoffee = { name, quantity, supplier, taste, category, details, photo }
-        console.log(newCoffee);
 
         fetch('http://localhost:3000/coffee',{
             method:'POST',
@@ -23,8 +21,8 @@ const AddCoffee = () => {
             },
             body:JSON.stringify(newCoffee)
         })
-        .then(res =>res.json())
-        .then(data =>{
+        .then(res => res.json())
+        .then(data => {
             if(data.insertedId){
                 Swal.fire({
                     title: 'success!',

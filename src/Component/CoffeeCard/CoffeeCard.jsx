@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const CoffeeCard = ({ coffee }) => {
-    const {_id, name, quantity, supplier, taste, category, details, photo } = coffee;
+const CoffeeCard = ({ coffee ,coffees,setCoffees}) => {
+    const { _id, name, quantity, supplier, taste, category, details, photo } = coffee;
     const handleDelete = _id => {
         console.log(_id);
         Swal.fire({
@@ -15,8 +16,6 @@ const CoffeeCard = ({ coffee }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-
-
                 fetch(`http://localhost:3000/coffee/${_id}`, {
                     method: 'DELETE'
                 })
@@ -33,25 +32,21 @@ const CoffeeCard = ({ coffee }) => {
                             setCoffees(remaining);
                         }
                     })
-
             }
         })
     }
-
     return (
-        <div className=''>
-            <div className='border-2 p-5 w-1/4 text-center'>
-                <img src={photo} alt="" />
-                <div>
-                    <p>Name : {name}</p>
-                    <p>Category : {category}</p>
-                    <p>Quantity : {quantity}</p>
-                </div>
-                <div>
-                    <button className="btn btn-neutral">Details</button>
-                    <button className="btn btn-primary">Edit</button>
-                    <button onClick={() =>handleDelete(_id)} className="btn btn-secondary">X</button>
-                </div>
+        <div className='border-2 p-5 m-5 text-center'>
+            <img src={photo} alt="" />
+            <div>
+                <p>Name : {name}</p>
+                <p>Category : {category}</p>
+                <p>Quantity : {quantity}</p>
+            </div>
+            <div>
+                <button className="btn btn-neutral">Details</button>
+                <Link to={`updateCoffee/${_id}`}><button className="btn btn-primary">Edit</button></Link>
+                <button onClick={() => handleDelete(_id)} className="btn btn-secondary">X</button>
             </div>
         </div>
     );

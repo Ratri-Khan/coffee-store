@@ -8,7 +8,6 @@ const Header = () => {
             <ul className='flex'>
                 <Link to='/'> <li className='pr-7'>Home</li></Link>
                 <Link to='/addCoffee'><li className='pr-7'>Add Coffee</li></Link>
-                <Link to='UpdateCoffee'> <li>Update Coffee</li></Link>
             </ul>
         </div>
     );
