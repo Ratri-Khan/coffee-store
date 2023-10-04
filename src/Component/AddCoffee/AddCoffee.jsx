@@ -1,5 +1,6 @@
 import React from 'react';
 import Swal from 'sweetalert2'
+
 const AddCoffee = () => {
     const handleAddCoffee = event => {
         event.preventDefault();
@@ -13,29 +14,33 @@ const AddCoffee = () => {
         const details = form.details.value;
         const photo = form.photo.value;
         const newCoffee = { name, quantity, supplier, taste, category, details, photo }
+        console.log(newCoffee);
 
-        fetch('http://localhost:3000/coffee',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch('http://localhost:3000/coffee', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
-            body:JSON.stringify(newCoffee)
+            body: JSON.stringify(newCoffee)
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.insertedId){
-                Swal.fire({
-                    title: 'success!',
-                    text: 'User Added SuccessFully',
-                    icon: 'success',
-                    confirmButtonText: 'Cool'
-                  })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'success!',
+                        text: 'User Added SuccessFully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                }
             }
-        })
 
+
+            )
     }
-  
-   return (   
+
+
+    return (
         <div className="bg-[#F4F3F0] p-24">
             <h2 className="text-3xl font-extrabold">Add a Coffee</h2>
             <form onSubmit={handleAddCoffee}>
@@ -107,7 +112,7 @@ const AddCoffee = () => {
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Add Coffee" className="bg-amber-800  btn btn-block" />
+                <input type="submit" value="Add Coffee" className="bg-[#65451F] text-white  btn btn-block" />
 
             </form>
         </div>
