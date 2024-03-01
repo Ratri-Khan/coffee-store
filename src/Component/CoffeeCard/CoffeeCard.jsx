@@ -17,7 +17,7 @@ const CoffeeCard = ({ coffee ,coffees ,setCoffees }) => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/coffee/${_id}`, {
+                fetch(`https://coffee-store-server-one-lovat.vercel.app/coffee/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -36,6 +36,7 @@ const CoffeeCard = ({ coffee ,coffees ,setCoffees }) => {
             }
         })
     }
+    
     return (
         <div className='border-2  text-white p-5 m-5 text-center border-[#65451F]'>
             <img src={photo} alt="" />
@@ -45,9 +46,7 @@ const CoffeeCard = ({ coffee ,coffees ,setCoffees }) => {
                 <p>Quantity : {quantity}</p>
             </div>
             <div>
-                <button className="btn text-white bg-[#65451F]">Details</button>
-                <Link><button className="btn text-white mx-3 bg-[#65451F]">Edit</button></Link>
-                <button onClick={() => handleDelete(_id)} className="btn text-white bg-[#65451F]">X</button>
+                <button onClick={() => handleDelete(_id)} className="btn text-white bg-[#65451F]">Remove</button>
             </div>
         </div>
     );

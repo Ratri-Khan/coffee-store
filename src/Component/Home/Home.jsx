@@ -5,7 +5,7 @@ const Home = () => {
     const [coffees,setCoffees] = useState([]);
    
     useEffect(() =>{
-        fetch('http://localhost:3000/coffee')
+        fetch('https://coffee-store-server-one-lovat.vercel.app/coffee')
         .then(res => res.json())
         .then(data =>setCoffees(data))
     },[])
